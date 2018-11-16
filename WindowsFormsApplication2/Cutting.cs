@@ -47,14 +47,14 @@ namespace WindowsFormsApplication2
             writer.WriteLine();
         }
 
-        public void DrawPoint(PictureBox picture)
+        public void DrawPoint(Graphics g)
         {
 
             Color red = Color.DarkRed;
             Color green = Color.Green;
             Color black = Color.Black;
             Color blue = Color.Blue;
-            Graphics g = picture.CreateGraphics();
+            
 
             Pen penred = new Pen(red);
             SolidBrush fillred = new SolidBrush(red);

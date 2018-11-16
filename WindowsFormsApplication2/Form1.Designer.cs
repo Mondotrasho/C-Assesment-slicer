@@ -264,6 +264,7 @@
             this.SpriteNumberTextBox.Size = new System.Drawing.Size(31, 20);
             this.SpriteNumberTextBox.TabIndex = 8;
             this.SpriteNumberTextBox.Text = "0";
+            this.SpriteNumberTextBox.TextChanged += new System.EventHandler(this.SpriteNumberTextBox_TextChanged);
             // 
             // textBox17
             // 
@@ -381,6 +382,7 @@
             this.Name = "Form1";
             this.Text = "Sprite Slicer.exe";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

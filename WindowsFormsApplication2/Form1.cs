@@ -30,9 +30,17 @@ namespace WindowsFormsApplication2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
         }
 
+        private void Form1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = pictureBox1.CreateGraphics();
+            foreach (var cutting in this.Cuttings)
+            {
+                cutting.DrawPoint(g);
+            }
+        }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
             if (e.GetType() == typeof(MouseEventArgs))
@@ -49,8 +57,6 @@ namespace WindowsFormsApplication2
                 this.PosXbox.Text = me.Location.X.ToString();
                 this.PosYbox.Text = me.Location.Y.ToString();
                 cuttings[selected].Pos = new Cutting.Vector2(me.Location.X, me.Location.Y);
-                cuttings[selected].DrawPoint(this.pictureBox1);
-
             }
 
         }
@@ -82,6 +88,15 @@ namespace WindowsFormsApplication2
                 }
 
             }
+        }
+
+        private void SpriteNumberTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (this.Cuttings.Capacity < Convert.ToInt32(this.SpriteNumberTextBox.Text))
+            {
+                this.Cuttings.Add(new Cutting());
+            }
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Number = Convert.ToInt32(this.SpriteNumberTextBox.Text);
         }
 
         private void SpriteNameTextBox_TextChanged(object sender, EventArgs e)
