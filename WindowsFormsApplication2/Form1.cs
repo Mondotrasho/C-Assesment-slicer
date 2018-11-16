@@ -83,5 +83,41 @@ namespace WindowsFormsApplication2
 
             }
         }
+
+        private void SpriteNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Name = this.SpriteNameTextBox.Text;
+        }
+
+        private void PosXbox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Pos.X = Convert.ToInt32(this.PosXbox.Text);
+        }
+
+        private void PosYbox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Pos.Y = Convert.ToInt32(this.PosYbox.Text);
+        }
+
+        private void SizeXbox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Size.X = Convert.ToInt32(this.SizeXbox.Text);
+        }
+
+        private void SizeYbox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Size.Y = Convert.ToInt32(this.SizeYbox.Text);
+        }
+
+        private void OffXbox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].PivotOffset.X = Convert.ToInt32(this.OffXbox.Text);
+        }
+
+        private void OffYbox_TextChanged(object sender, EventArgs e)
+        {
+            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].PivotOffset.Y = Convert.ToInt32(this.OffYbox.Text);
+        }
+        
     }
 }

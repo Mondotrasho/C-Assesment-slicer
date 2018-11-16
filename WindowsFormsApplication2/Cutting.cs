@@ -26,7 +26,7 @@ namespace WindowsFormsApplication2
             {
                 writer.Write(X + "," + Y + ",");
             }
-            
+
         }
 
         public int Number = 0;
@@ -39,7 +39,7 @@ namespace WindowsFormsApplication2
 
         public void Write(StreamWriter writer)
         {
-            writer.Write(Number);
+            writer.Write(Number + ",");
             writer.Write(this.Name + ",");
             Pos.Write(writer);
             Size.Write(writer);
@@ -49,17 +49,53 @@ namespace WindowsFormsApplication2
 
         public void DrawPoint(PictureBox picture)
         {
-            
-                Color color = Color.DarkRed;
-                Graphics g = picture.CreateGraphics();
 
-                Pen pen = new Pen(color);
-                SolidBrush fill = new SolidBrush(color);
-                // g.DrawRectangle(pen,new Rectangle(bit[0], bit[1],5,5));//DrawLine(pen, new Point(bit[0], bit[0]), new Point(x, y));
-                g.DrawRectangle(pen, new Rectangle(this.Pos.X, this.Pos.Y - 6, 1, 13));
-                g.DrawRectangle(pen, new Rectangle(this.Pos.X - 6, this.Pos.Y, 13, 1));
-                g.FillEllipse(fill, new Rectangle(this.Pos.X - 2, this.Pos.Y - 2, 5, 5));
+            Color red = Color.DarkRed;
+            Color green = Color.Green;
+            Color black = Color.Black;
+            Color blue = Color.Blue;
+            Graphics g = picture.CreateGraphics();
+
+            Pen penred = new Pen(red);
+            SolidBrush fillred = new SolidBrush(red);
+            Pen pengreen = new Pen(green);
+            SolidBrush fillgreen = new SolidBrush(green);
+            Pen penblack = new Pen(black);
+            SolidBrush fillblack = new SolidBrush(black);
+            Pen penblue = new Pen(blue);
+            SolidBrush fillblue = new SolidBrush(blue);
             
+            //draw Box
+            g.DrawRectangle(penblack, new Rectangle(this.Pos.X - (this.Size.X / 2),this.Pos.Y - (this.Size.Y / 2),this.Size.X ,this.Size.Y));
+
+            //find Pivot
+            //positive because left to right is down to up
+            var centerX = this.Pos.X + this.PivotOffset.X;
+            //negative because bot to top is up to down
+            var centerY = this.Pos.Y - this.PivotOffset.Y;
+
+            //draw Middle/Pivot
+            g.DrawRectangle(penred, new Rectangle(centerX, centerY - 6, 1, 13));
+            g.DrawRectangle(penred, new Rectangle(centerX - 6, centerY, 13, 1));
+            g.FillEllipse(fillred, new Rectangle(centerX - 2, centerY - 2, 5, 5));
+            //draw bot left
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2), Pos.Y + (this.Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2) - 6, Pos.Y + (this.Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X - (this.Size.X / 2) - 2, Pos.Y + (this.Size.Y / 2) - 2, 5, 5));
+            //draw bot Right
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2), Pos.Y + (this.Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2) - 6, Pos.Y + (this.Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X + (this.Size.X / 2) - 2, Pos.Y + (this.Size.Y / 2) - 2, 5, 5));
+            //draw top left
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2), Pos.Y - (this.Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2) - 6, Pos.Y - (this.Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X - (this.Size.X / 2) - 2, Pos.Y - (this.Size.Y / 2) - 2, 5, 5));
+            //draw top right
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2), Pos.Y - (this.Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2) - 6, Pos.Y - (this.Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X + (this.Size.X / 2) - 2, Pos.Y - (this.Size.Y / 2) - 2, 5, 5));
+
+
         }
     }
 }

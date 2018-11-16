@@ -144,6 +144,7 @@
             this.SpriteNameTextBox.Name = "SpriteNameTextBox";
             this.SpriteNameTextBox.Size = new System.Drawing.Size(188, 20);
             this.SpriteNameTextBox.TabIndex = 27;
+            this.SpriteNameTextBox.TextChanged += new System.EventHandler(this.SpriteNameTextBox_TextChanged);
             // 
             // Title1
             // 
@@ -162,6 +163,7 @@
             this.OffYbox.Name = "OffYbox";
             this.OffYbox.Size = new System.Drawing.Size(41, 20);
             this.OffYbox.TabIndex = 25;
+            this.OffYbox.TextChanged += new System.EventHandler(this.OffYbox_TextChanged);
             // 
             // SaveButton
             // 
@@ -253,6 +255,7 @@
             this.OffXbox.Name = "OffXbox";
             this.OffXbox.Size = new System.Drawing.Size(41, 20);
             this.OffXbox.TabIndex = 20;
+            this.OffXbox.TextChanged += new System.EventHandler(this.OffXbox_TextChanged);
             // 
             // SpriteNumberTextBox
             // 
@@ -289,6 +292,7 @@
             this.SizeYbox.Name = "SizeYbox";
             this.SizeYbox.Size = new System.Drawing.Size(41, 20);
             this.SizeYbox.TabIndex = 18;
+            this.SizeYbox.TextChanged += new System.EventHandler(this.SizeYbox_TextChanged);
             // 
             // textBox7
             // 
@@ -327,6 +331,7 @@
             this.SizeXbox.Name = "SizeXbox";
             this.SizeXbox.Size = new System.Drawing.Size(41, 20);
             this.SizeXbox.TabIndex = 16;
+            this.SizeXbox.TextChanged += new System.EventHandler(this.SizeXbox_TextChanged);
             // 
             // PosYbox
             // 
@@ -335,6 +340,7 @@
             this.PosYbox.Name = "PosYbox";
             this.PosYbox.Size = new System.Drawing.Size(41, 20);
             this.PosYbox.TabIndex = 12;
+            this.PosYbox.TextChanged += new System.EventHandler(this.PosYbox_TextChanged);
             // 
             // textBox13
             // 
@@ -363,6 +369,7 @@
             this.PosXbox.Name = "PosXbox";
             this.PosXbox.Size = new System.Drawing.Size(41, 20);
             this.PosXbox.TabIndex = 14;
+            this.PosXbox.TextChanged += new System.EventHandler(this.PosXbox_TextChanged);
             // 
             // Form1
             // 
