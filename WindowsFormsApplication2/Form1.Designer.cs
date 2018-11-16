@@ -32,6 +32,8 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.SpriteNameTextBox = new System.Windows.Forms.TextBox();
             this.Title1 = new System.Windows.Forms.TextBox();
             this.OffYbox = new System.Windows.Forms.TextBox();
             this.SaveButton = new System.Windows.Forms.Button();
@@ -56,8 +58,6 @@
             this.textBox13 = new System.Windows.Forms.TextBox();
             this.textBox11 = new System.Windows.Forms.TextBox();
             this.PosXbox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.SpriteNameTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -71,6 +71,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(695, 546);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
             // 
             // panel2
             // 
@@ -127,6 +128,23 @@
             this.panel1.Size = new System.Drawing.Size(245, 541);
             this.panel1.TabIndex = 27;
             // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Location = new System.Drawing.Point(10, 220);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(34, 13);
+            this.textBox1.TabIndex = 26;
+            this.textBox1.Text = "Name :";
+            // 
+            // SpriteNameTextBox
+            // 
+            this.SpriteNameTextBox.Location = new System.Drawing.Point(50, 220);
+            this.SpriteNameTextBox.Name = "SpriteNameTextBox";
+            this.SpriteNameTextBox.Size = new System.Drawing.Size(188, 20);
+            this.SpriteNameTextBox.TabIndex = 27;
+            // 
             // Title1
             // 
             this.Title1.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -153,6 +171,7 @@
             this.SaveButton.TabIndex = 0;
             this.SaveButton.Text = "Export Cutting";
             this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // textBox20
             // 
@@ -241,6 +260,7 @@
             this.SpriteNumberTextBox.Name = "SpriteNumberTextBox";
             this.SpriteNumberTextBox.Size = new System.Drawing.Size(31, 20);
             this.SpriteNumberTextBox.TabIndex = 8;
+            this.SpriteNumberTextBox.Text = "0";
             // 
             // textBox17
             // 
@@ -343,23 +363,6 @@
             this.PosXbox.Name = "PosXbox";
             this.PosXbox.Size = new System.Drawing.Size(41, 20);
             this.PosXbox.TabIndex = 14;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Location = new System.Drawing.Point(10, 220);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(34, 13);
-            this.textBox1.TabIndex = 26;
-            this.textBox1.Text = "Name :";
-            // 
-            // SpriteNameTextBox
-            // 
-            this.SpriteNameTextBox.Location = new System.Drawing.Point(50, 220);
-            this.SpriteNameTextBox.Name = "SpriteNameTextBox";
-            this.SpriteNameTextBox.Size = new System.Drawing.Size(188, 20);
-            this.SpriteNameTextBox.TabIndex = 27;
             // 
             // Form1
             // 
