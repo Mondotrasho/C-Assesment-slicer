@@ -40,7 +40,7 @@
             this.textBox20 = new System.Windows.Forms.TextBox();
             this.LoadSheetButton = new System.Windows.Forms.Button();
             this.LoadSavedButton = new System.Windows.Forms.Button();
-            this.AdressTextBox = new System.Windows.Forms.TextBox();
+            this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.ModeCombo = new System.Windows.Forms.ComboBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox18 = new System.Windows.Forms.TextBox();
@@ -105,7 +105,7 @@
             this.panel1.Controls.Add(this.textBox20);
             this.panel1.Controls.Add(this.LoadSheetButton);
             this.panel1.Controls.Add(this.LoadSavedButton);
-            this.panel1.Controls.Add(this.AdressTextBox);
+            this.panel1.Controls.Add(this.AddressTextBox);
             this.panel1.Controls.Add(this.ModeCombo);
             this.panel1.Controls.Add(this.textBox3);
             this.panel1.Controls.Add(this.textBox18);
@@ -193,6 +193,7 @@
             this.LoadSheetButton.TabIndex = 2;
             this.LoadSheetButton.Text = "Load Sheet";
             this.LoadSheetButton.UseVisualStyleBackColor = true;
+            this.LoadSheetButton.Click += new System.EventHandler(this.LoadSheetButton_Click);
             // 
             // LoadSavedButton
             // 
@@ -203,12 +204,12 @@
             this.LoadSavedButton.Text = "Load Cutting";
             this.LoadSavedButton.UseVisualStyleBackColor = true;
             // 
-            // AdressTextBox
+            // AddressTextBox
             // 
-            this.AdressTextBox.Location = new System.Drawing.Point(10, 72);
-            this.AdressTextBox.Name = "AdressTextBox";
-            this.AdressTextBox.Size = new System.Drawing.Size(228, 20);
-            this.AdressTextBox.TabIndex = 5;
+            this.AddressTextBox.Location = new System.Drawing.Point(14, 69);
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(228, 20);
+            this.AddressTextBox.TabIndex = 5;
             // 
             // ModeCombo
             // 
@@ -402,7 +403,7 @@
         private System.Windows.Forms.TextBox textBox20;
         private System.Windows.Forms.Button LoadSheetButton;
         private System.Windows.Forms.Button LoadSavedButton;
-        private System.Windows.Forms.TextBox AdressTextBox;
+        private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.ComboBox ModeCombo;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.TextBox textBox18;

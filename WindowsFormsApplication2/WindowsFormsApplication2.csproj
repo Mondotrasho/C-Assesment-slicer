@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SpriteSlice.cs" />
     <Compile Include="Creator.cs" />
     <Compile Include="Cutting.cs" />
     <Compile Include="DrawableCoordinate.cs" />

@@ -19,14 +19,15 @@ namespace WindowsFormsApplication2
         //public Creator store;
         public Form1()
         {
-            //store = new Creator();
-            //store.Box = new List<int[]>();
-            Cuttings = new List<Cutting>();
+            Slicing = new SpriteSlice();
             InitializeComponent();
         }
 
+        private SpriteSlice Slicing;
+
+        public int ActiveIndex;
         //public Cutting myCutt;
-        public List<Cutting> Cuttings;
+        //public List<Cutting> Cuttings;
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -35,30 +36,18 @@ namespace WindowsFormsApplication2
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = pictureBox1.CreateGraphics();
-            foreach (var cutting in this.Cuttings)
-            {
-                cutting.DrawPoint(g);
-            }
+            Graphics g = this.pictureBox1.CreateGraphics();
+            this.Slicing.Draw(g);
         }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
+            //if clicked
             if (e.GetType() == typeof(MouseEventArgs))
             {
-
-                int selected = Convert.ToInt32(this.SpriteNumberTextBox.Text);
-                var cuttings = this.Cuttings;
-                if (cuttings != null)
-                {
-                    cuttings.Add(new Cutting());
-                }
-
                 MouseEventArgs me = e as MouseEventArgs;
                 this.PosXbox.Text = me.Location.X.ToString();
                 this.PosYbox.Text = me.Location.Y.ToString();
-                cuttings[selected].Pos = new Cutting.Vector2(me.Location.X, me.Location.Y);
             }
-
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -75,11 +64,7 @@ namespace WindowsFormsApplication2
                     // myStream = saveFileDialog1.OpenFile();
                     var writer = new StreamWriter(myStream);
                     {
-                        foreach (var cutting in this.Cuttings)
-                        {
-                            cutting.Write(writer);
-
-                        }
+                        this.Slicing.Write(writer);
 
                         writer.Close();
                         myStream.Dispose();
@@ -92,47 +77,69 @@ namespace WindowsFormsApplication2
 
         private void SpriteNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            if (this.Cuttings.Capacity < Convert.ToInt32(this.SpriteNumberTextBox.Text))
-            {
-                this.Cuttings.Add(new Cutting());
-            }
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Number = Convert.ToInt32(this.SpriteNumberTextBox.Text);
+            ActiveIndex = Convert.ToInt32(this.SpriteNumberTextBox.Text);
+            this.Slicing.checkAndAdd(this.ActiveIndex);
+            this.Slicing.Cuttings[ActiveIndex].Number = ActiveIndex;
+
+            //Updates the other text fields as slave to 
+            this.SpriteNameTextBox.Text = this.Slicing.Cuttings[ActiveIndex].Name;
+            this.PosXbox.Text = this.Slicing.Cuttings[ActiveIndex].Pos.X.ToString();
+            this.PosYbox.Text = this.Slicing.Cuttings[ActiveIndex].Pos.Y.ToString();
+            this.SizeXbox.Text = this.Slicing.Cuttings[ActiveIndex].Size.X.ToString();
+            this.SizeYbox.Text = this.Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
+            this.OffXbox.Text = this.Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
+            this.OffYbox.Text = this.Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
         }
 
         private void SpriteNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Name = this.SpriteNameTextBox.Text;
+            this.Slicing.Cuttings[ActiveIndex].Name = this.SpriteNameTextBox.Text;
         }
 
         private void PosXbox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Pos.X = Convert.ToInt32(this.PosXbox.Text);
+            this.Slicing.Cuttings[ActiveIndex].Pos.X = Convert.ToInt32(this.PosXbox.Text);
         }
 
         private void PosYbox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Pos.Y = Convert.ToInt32(this.PosYbox.Text);
+            this.Slicing.Cuttings[ActiveIndex].Pos.Y = Convert.ToInt32(this.PosYbox.Text);
         }
 
         private void SizeXbox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Size.X = Convert.ToInt32(this.SizeXbox.Text);
+            this.Slicing.Cuttings[ActiveIndex].Size.X = Convert.ToInt32(this.SizeXbox.Text);
         }
 
         private void SizeYbox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].Size.Y = Convert.ToInt32(this.SizeYbox.Text);
+            this.Slicing.Cuttings[ActiveIndex].Size.Y = Convert.ToInt32(this.SizeYbox.Text);
         }
 
         private void OffXbox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].PivotOffset.X = Convert.ToInt32(this.OffXbox.Text);
+            this.Slicing.Cuttings[ActiveIndex].PivotOffset.X = Convert.ToInt32(this.OffXbox.Text);
         }
 
         private void OffYbox_TextChanged(object sender, EventArgs e)
         {
-            this.Cuttings[Convert.ToInt32(this.SpriteNumberTextBox.Text)].PivotOffset.Y = Convert.ToInt32(this.OffYbox.Text);
+            this.Slicing.Cuttings[ActiveIndex].PivotOffset.Y = Convert.ToInt32(this.OffYbox.Text);
         }
-        
+
+        private void LoadSheetButton_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+
+            openFileDialog.Filter = "bmp files (*.bmp)|*.bmp";
+
+            openFileDialog.FilterIndex = 2;
+            openFileDialog.RestoreDirectory = true;
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                this.pictureBox1.Image = new Bitmap(openFileDialog.FileName);
+                this.AddressTextBox.Text = openFileDialog.FileName;
+            }
+
+        }
     }
 }
