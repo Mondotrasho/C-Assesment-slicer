@@ -18,17 +18,15 @@ namespace WindowsFormsApplication2
             public int Y;
             public Vector2(int x, int y)
             {
-                this.X = x;
-                this.Y = y;
+                X = x;
+                Y = y;
             }
-
             public void Write(StreamWriter writer)
             {
                 writer.Write(X + "," + Y + ",");
             }
 
         }
-
         public int Number = 0;
         public string Name = String.Empty;
         public Vector2 Pos = new Vector2(0, 0);
@@ -40,7 +38,7 @@ namespace WindowsFormsApplication2
         public void Write(StreamWriter writer)
         {
             writer.Write(Number + ",");
-            writer.Write(this.Name + ",");
+            writer.Write(Name + ",");
             Pos.Write(writer);
             Size.Write(writer);
             PivotOffset.Write(writer);
@@ -66,34 +64,34 @@ namespace WindowsFormsApplication2
             SolidBrush fillblue = new SolidBrush(blue);
             
             //draw Box
-            g.DrawRectangle(penblack, new Rectangle(this.Pos.X - (this.Size.X / 2),this.Pos.Y - (this.Size.Y / 2),this.Size.X ,this.Size.Y));
+            g.DrawRectangle(penblack, new Rectangle(Pos.X - (Size.X / 2),Pos.Y - (Size.Y / 2),Size.X ,Size.Y));
 
             //find Pivot
             //positive because left to right is down to up
-            var centerX = this.Pos.X + this.PivotOffset.X;
+            var centerX = Pos.X + PivotOffset.X;
             //negative because bot to top is up to down
-            var centerY = this.Pos.Y - this.PivotOffset.Y;
+            var centerY = Pos.Y - PivotOffset.Y;
 
             //draw Middle/Pivot
             g.DrawRectangle(penred, new Rectangle(centerX, centerY - 6, 1, 13));
             g.DrawRectangle(penred, new Rectangle(centerX - 6, centerY, 13, 1));
             g.FillEllipse(fillred, new Rectangle(centerX - 2, centerY - 2, 5, 5));
             //draw bot left
-            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2), Pos.Y + (this.Size.Y / 2) - 6, 1, 13));
-            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2) - 6, Pos.Y + (this.Size.Y / 2), 13, 1));
-            g.FillEllipse(fillblue, new Rectangle(Pos.X - (this.Size.X / 2) - 2, Pos.Y + (this.Size.Y / 2) - 2, 5, 5));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (Size.X / 2), Pos.Y + (Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (Size.X / 2) - 6, Pos.Y + (Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X - (Size.X / 2) - 2, Pos.Y + (Size.Y / 2) - 2, 5, 5));
             //draw bot Right
-            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2), Pos.Y + (this.Size.Y / 2) - 6, 1, 13));
-            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2) - 6, Pos.Y + (this.Size.Y / 2), 13, 1));
-            g.FillEllipse(fillblue, new Rectangle(Pos.X + (this.Size.X / 2) - 2, Pos.Y + (this.Size.Y / 2) - 2, 5, 5));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (Size.X / 2), Pos.Y + (Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (Size.X / 2) - 6, Pos.Y + (Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X + (Size.X / 2) - 2, Pos.Y + (Size.Y / 2) - 2, 5, 5));
             //draw top left
-            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2), Pos.Y - (this.Size.Y / 2) - 6, 1, 13));
-            g.DrawRectangle(penblue, new Rectangle(Pos.X - (this.Size.X / 2) - 6, Pos.Y - (this.Size.Y / 2), 13, 1));
-            g.FillEllipse(fillblue, new Rectangle(Pos.X - (this.Size.X / 2) - 2, Pos.Y - (this.Size.Y / 2) - 2, 5, 5));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (Size.X / 2), Pos.Y - (Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X - (Size.X / 2) - 6, Pos.Y - (Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X - (Size.X / 2) - 2, Pos.Y - (Size.Y / 2) - 2, 5, 5));
             //draw top right
-            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2), Pos.Y - (this.Size.Y / 2) - 6, 1, 13));
-            g.DrawRectangle(penblue, new Rectangle(Pos.X + (this.Size.X / 2) - 6, Pos.Y - (this.Size.Y / 2), 13, 1));
-            g.FillEllipse(fillblue, new Rectangle(Pos.X + (this.Size.X / 2) - 2, Pos.Y - (this.Size.Y / 2) - 2, 5, 5));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (Size.X / 2), Pos.Y - (Size.Y / 2) - 6, 1, 13));
+            g.DrawRectangle(penblue, new Rectangle(Pos.X + (Size.X / 2) - 6, Pos.Y - (Size.Y / 2), 13, 1));
+            g.FillEllipse(fillblue, new Rectangle(Pos.X + (Size.X / 2) - 2, Pos.Y - (Size.Y / 2) - 2, 5, 5));
 
 
         }

@@ -19,25 +19,32 @@ namespace WindowsFormsApplication2
         //public Creator store;
         public Form1()
         {
-            Slicing = new SpriteSlice();
             InitializeComponent();
+            SpriteNumberTextBox.Text = Slicing.Cuttings[ActiveIndex].Number.ToString();
+            SpriteNameTextBox.Text = Slicing.Cuttings[ActiveIndex].Name;
+            PosXbox.Text = Slicing.Cuttings[ActiveIndex].Pos.X.ToString();
+            PosYbox.Text = Slicing.Cuttings[ActiveIndex].Pos.Y.ToString();
+            SizeXbox.Text = Slicing.Cuttings[ActiveIndex].Size.X.ToString();
+            SizeYbox.Text = Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
+            OffXbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
+            OffYbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
         }
 
-        private SpriteSlice Slicing;
+        private SpriteSlice Slicing = new SpriteSlice();
 
-        public int ActiveIndex;
+        public int ActiveIndex = 0;
         //public Cutting myCutt;
         //public List<Cutting> Cuttings;
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+            pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(Form1_Paint);
         }
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
-            Graphics g = this.pictureBox1.CreateGraphics();
-            this.Slicing.Draw(g);
+            Graphics g = pictureBox1.CreateGraphics();
+            Slicing.Draw(g);
         }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
@@ -45,8 +52,9 @@ namespace WindowsFormsApplication2
             if (e.GetType() == typeof(MouseEventArgs))
             {
                 MouseEventArgs me = e as MouseEventArgs;
-                this.PosXbox.Text = me.Location.X.ToString();
-                this.PosYbox.Text = me.Location.Y.ToString();
+                PosXbox.Text = me.Location.X.ToString();
+                PosYbox.Text = me.Location.Y.ToString();
+                this.Invalidate();
             }
         }
 
@@ -61,10 +69,9 @@ namespace WindowsFormsApplication2
             {
                 if ((myStream = saveFileDialog1.OpenFile()) != null)
                 {
-                    // myStream = saveFileDialog1.OpenFile();
                     var writer = new StreamWriter(myStream);
                     {
-                        this.Slicing.Write(writer);
+                        Slicing.Write(writer);
 
                         writer.Close();
                         myStream.Dispose();
@@ -77,53 +84,60 @@ namespace WindowsFormsApplication2
 
         private void SpriteNumberTextBox_TextChanged(object sender, EventArgs e)
         {
-            ActiveIndex = Convert.ToInt32(this.SpriteNumberTextBox.Text);
-            this.Slicing.checkAndAdd(this.ActiveIndex);
-            this.Slicing.Cuttings[ActiveIndex].Number = ActiveIndex;
+            ActiveIndex = Convert.ToInt32(SpriteNumberTextBox.Text);
+            Slicing.checkAndAdd(ActiveIndex);
+            Slicing.Cuttings[ActiveIndex].Number = ActiveIndex;
 
-            //Updates the other text fields as slave to 
-            this.SpriteNameTextBox.Text = this.Slicing.Cuttings[ActiveIndex].Name;
-            this.PosXbox.Text = this.Slicing.Cuttings[ActiveIndex].Pos.X.ToString();
-            this.PosYbox.Text = this.Slicing.Cuttings[ActiveIndex].Pos.Y.ToString();
-            this.SizeXbox.Text = this.Slicing.Cuttings[ActiveIndex].Size.X.ToString();
-            this.SizeYbox.Text = this.Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
-            this.OffXbox.Text = this.Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
-            this.OffYbox.Text = this.Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
+            //Invalidates the other text fields as slave to 
+            SpriteNameTextBox.Text = Slicing.Cuttings[ActiveIndex].Name;
+            PosXbox.Text = Slicing.Cuttings[ActiveIndex].Pos.X.ToString();
+            PosYbox.Text = Slicing.Cuttings[ActiveIndex].Pos.Y.ToString();
+            SizeXbox.Text = Slicing.Cuttings[ActiveIndex].Size.X.ToString();
+            SizeYbox.Text = Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
+            OffXbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
+            OffYbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
+            this.Invalidate();
         }
 
         private void SpriteNameTextBox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].Name = this.SpriteNameTextBox.Text;
+            Slicing.Cuttings[ActiveIndex].Name = SpriteNameTextBox.Text;
         }
 
         private void PosXbox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].Pos.X = Convert.ToInt32(this.PosXbox.Text);
+            Slicing.Cuttings[ActiveIndex].Pos.X = Convert.ToInt32(PosXbox.Text);
+            this.Invalidate();
         }
 
         private void PosYbox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].Pos.Y = Convert.ToInt32(this.PosYbox.Text);
+            Slicing.Cuttings[ActiveIndex].Pos.Y = Convert.ToInt32(PosYbox.Text);
+            this.Invalidate();
         }
 
         private void SizeXbox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].Size.X = Convert.ToInt32(this.SizeXbox.Text);
+            Slicing.Cuttings[ActiveIndex].Size.X = Convert.ToInt32(SizeXbox.Text);
+            this.Invalidate();
         }
 
         private void SizeYbox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].Size.Y = Convert.ToInt32(this.SizeYbox.Text);
+            Slicing.Cuttings[ActiveIndex].Size.Y = Convert.ToInt32(SizeYbox.Text);
+            this.Invalidate();
         }
 
         private void OffXbox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].PivotOffset.X = Convert.ToInt32(this.OffXbox.Text);
+            Slicing.Cuttings[ActiveIndex].PivotOffset.X = Convert.ToInt32(OffXbox.Text);
+            this.Invalidate();
         }
 
         private void OffYbox_TextChanged(object sender, EventArgs e)
         {
-            this.Slicing.Cuttings[ActiveIndex].PivotOffset.Y = Convert.ToInt32(this.OffYbox.Text);
+            Slicing.Cuttings[ActiveIndex].PivotOffset.Y = Convert.ToInt32(OffYbox.Text);
+            this.Invalidate();
         }
 
         private void LoadSheetButton_Click(object sender, EventArgs e)
@@ -136,8 +150,8 @@ namespace WindowsFormsApplication2
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                this.pictureBox1.Image = new Bitmap(openFileDialog.FileName);
-                this.AddressTextBox.Text = openFileDialog.FileName;
+                pictureBox1.Image = new Bitmap(openFileDialog.FileName);
+                AddressTextBox.Text = openFileDialog.FileName;
             }
 
         }

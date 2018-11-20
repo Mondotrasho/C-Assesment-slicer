@@ -12,12 +12,12 @@
         //add XY coords
         public void Add(int a, int b)
         {
-            this.Box.Add(new[] { a, b });
+            Box.Add(new[] { a, b });
         }
         //write out xy cords using comma seperated
         public void Write(StreamWriter writer)
         {
-            foreach (var thing in this.Box)
+            foreach (var thing in Box)
             {
                 writer.Write(thing[0].ToString() +","+ thing[1].ToString() +",");
             }
@@ -26,7 +26,7 @@
         public void DrawPoint(PictureBox picture)
         {
         
-            foreach (var bit in this.Box)
+            foreach (var bit in Box)
             {
                 Color color = Color.DarkRed;
                 Graphics g = picture.CreateGraphics();
