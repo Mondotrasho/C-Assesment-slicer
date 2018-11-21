@@ -20,14 +20,8 @@ namespace WindowsFormsApplication2
         public Form1()
         {
             InitializeComponent();
-            SpriteNumberTextBox.Text = Slicing.Cuttings[ActiveIndex].Number.ToString();
-            SpriteNameTextBox.Text = Slicing.Cuttings[ActiveIndex].Name;
-            PosXbox.Text = Slicing.Cuttings[ActiveIndex].Pos.X.ToString();
-            PosYbox.Text = Slicing.Cuttings[ActiveIndex].Pos.Y.ToString();
-            SizeXbox.Text = Slicing.Cuttings[ActiveIndex].Size.X.ToString();
-            SizeYbox.Text = Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
-            OffXbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
-            OffYbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
+            resetTextFields();
+
             image = new Bitmap(pictureBox1.BackgroundImage);
         }
 
@@ -161,7 +155,7 @@ namespace WindowsFormsApplication2
                         stream.Dispose();
                         stream.Close();
                     }
-                    this.Invalidate();
+                    resetTextFields();
                 }
             }
         }
@@ -188,6 +182,20 @@ namespace WindowsFormsApplication2
                 }
 
             }
+        }
+
+        private void resetTextFields()
+        {
+            this.ActiveIndex = 0;
+            this.SpriteNumberTextBox.Text = ActiveIndex.ToString();
+            SpriteNameTextBox.Text = Slicing.Cuttings[ActiveIndex].Name;
+            PosXbox.Text = Slicing.Cuttings[ActiveIndex].Pos.X.ToString();
+            PosYbox.Text = Slicing.Cuttings[ActiveIndex].Pos.Y.ToString();
+            SizeXbox.Text = Slicing.Cuttings[ActiveIndex].Size.X.ToString();
+            SizeYbox.Text = Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
+            OffXbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
+            OffYbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
+            this.Invalidate();
         }
     }
 }
