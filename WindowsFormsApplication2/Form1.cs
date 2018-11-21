@@ -28,11 +28,15 @@ namespace WindowsFormsApplication2
             SizeYbox.Text = Slicing.Cuttings[ActiveIndex].Size.Y.ToString();
             OffXbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
             OffYbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
+            image = new Bitmap(pictureBox1.BackgroundImage);
         }
 
         private SpriteSlice Slicing = new SpriteSlice();
 
         public int ActiveIndex = 0;
+
+        private Image image;
+
         //public Cutting myCutt;
         //public List<Cutting> Cuttings;
 
@@ -44,7 +48,8 @@ namespace WindowsFormsApplication2
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
             Graphics g = pictureBox1.CreateGraphics();
-            Slicing.Draw(g);
+            g.DrawImage(image ,new Point(0,0));
+            Slicing.Draw(g,this.ActiveIndex);
         }
         private void pictureBox1_Click_1(object sender, EventArgs e)
         {
@@ -58,29 +63,6 @@ namespace WindowsFormsApplication2
             }
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
-        {
-            Stream myStream;
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-            saveFileDialog1.FilterIndex = 2;
-            saveFileDialog1.RestoreDirectory = true;
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if ((myStream = saveFileDialog1.OpenFile()) != null)
-                {
-                    var writer = new StreamWriter(myStream);
-                    {
-                        Slicing.Write(writer);
-
-                        writer.Close();
-                        myStream.Dispose();
-                        myStream.Close();
-                    }
-                }
-
-            }
-        }
 
         private void SpriteNumberTextBox_TextChanged(object sender, EventArgs e)
         {
@@ -150,10 +132,62 @@ namespace WindowsFormsApplication2
             openFileDialog.RestoreDirectory = true;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                pictureBox1.Image = new Bitmap(openFileDialog.FileName);
+                //pictureBox1.Image
+                
+                this.image = new Bitmap(openFileDialog.FileName);
                 AddressTextBox.Text = openFileDialog.FileName;
+                this.Invalidate();
             }
 
+        }
+
+        private void LoadSavedButton_Click(object sender, EventArgs e)
+        {
+            Stream stream;
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            //looking for csv
+            openFileDialog.Filter = "csv files (*.csv)|*.csv";
+            openFileDialog.RestoreDirectory = true;
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                if ((stream = openFileDialog.OpenFile()) != null)
+                {
+                    var reader = new StreamReader(stream);
+                    {
+                        Slicing.Read(reader);
+
+                        reader.Close();
+                        stream.Dispose();
+                        stream.Close();
+                    }
+                    this.Invalidate();
+                }
+            }
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                if ((myStream = saveFileDialog1.OpenFile()) != null)
+                {
+                    var writer = new StreamWriter(myStream);
+                    {
+                        Slicing.Write(writer);
+
+                        writer.Close();
+                        myStream.Dispose();
+                        myStream.Close();
+                    }
+                }
+
+            }
         }
     }
 }
