@@ -204,16 +204,6 @@ namespace WindowsFormsApplication2
             this.Slicing.JsonSerialize();
         }
 
-        private void pictureBox1_DragEnter(object sender, DragEventArgs e)
-        {
-           
-        }
-
-        private void pictureBox1_DragDrop(object sender, DragEventArgs e)
-        {
-            
-        }
-
         private string getExtension(string file)
         {
             return Path.GetExtension(file);
@@ -232,6 +222,7 @@ namespace WindowsFormsApplication2
                 if (fileType == ".bmp")
                 {
                     this.image = new Bitmap(file);
+                    AddressTextBox.Text = file.ToString();
                     this.Invalidate();
                 }
                 if (fileType == ".csv")
@@ -246,6 +237,7 @@ namespace WindowsFormsApplication2
                     var reader = new StreamReader(stream);
                     Slicing.Read(reader);
                     reader.Close();
+                    resetTextFields();
                     this.Invalidate();
                 }
             }
