@@ -33,6 +33,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.JsonTest = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SpriteNameTextBox = new System.Windows.Forms.TextBox();
             this.Title1 = new System.Windows.Forms.TextBox();
@@ -74,6 +75,8 @@
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click_1);
+            this.pictureBox1.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragDrop);
+            this.pictureBox1.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragEnter);
             // 
             // panel2
             // 
@@ -99,6 +102,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.panel1.Controls.Add(this.JsonTest);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.SpriteNameTextBox);
             this.panel1.Controls.Add(this.Title1);
@@ -129,6 +133,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(245, 541);
             this.panel1.TabIndex = 27;
+            // 
+            // JsonTest
+            // 
+            this.JsonTest.Location = new System.Drawing.Point(182, 151);
+            this.JsonTest.Name = "JsonTest";
+            this.JsonTest.Size = new System.Drawing.Size(63, 46);
+            this.JsonTest.TabIndex = 28;
+            this.JsonTest.Text = "Json";
+            this.JsonTest.UseVisualStyleBackColor = true;
+            this.JsonTest.Click += new System.EventHandler(this.JsonTest_Click);
             // 
             // textBox1
             // 
@@ -378,6 +392,7 @@
             // 
             // Form1
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(996, 571);
@@ -386,6 +401,8 @@
             this.Name = "Form1";
             this.Text = "Sprite Slicer.exe";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.Form1_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.Form1_DragEnter);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
@@ -427,6 +444,7 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox SpriteNameTextBox;
+        private System.Windows.Forms.Button JsonTest;
     }
 }
 

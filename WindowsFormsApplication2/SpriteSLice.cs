@@ -8,6 +8,7 @@ namespace WindowsFormsApplication2
 {
     using System.Drawing;
     using System.IO;
+    using System.Runtime.Serialization.Json;
 
     class SpriteSlice
     {
@@ -86,6 +87,39 @@ namespace WindowsFormsApplication2
                 this.Cuttings[i].Size = new Cutting.Vector2(Convert.ToInt32(allTheString[4]), Convert.ToInt32(allTheString[5]));
                 this.Cuttings[i].PivotOffset = new Cutting.Vector2(Convert.ToInt32(allTheString[6]), Convert.ToInt32(allTheString[7]));
                 i++;
+            }
+        }
+
+        public void JsonSerialize()
+        {
+            MemoryStream stream1 = new MemoryStream();
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<Cutting>));
+
+            ser.WriteObject(stream1, Cuttings);
+
+            stream1.Position = 0;
+            StreamReader sr = new StreamReader(stream1);
+            Console.Write("JSON form of Node object: ");
+            Console.WriteLine(sr.ReadToEnd());
+
+
+            stream1.Position = 0;
+            var Array = (List<Cutting>)ser.ReadObject(stream1);
+
+            foreach (Cutting n in Array)
+            {
+                Console.Write("Deserialized back, got Number=");
+                Console.Write(n.Number);
+                Console.Write(", Name=");
+                Console.WriteLine(n.Name);
+                Console.Write(", Name=");
+                Console.WriteLine(n.Pos);
+                Console.Write(", Name=");
+                Console.WriteLine(n.Size);
+                Console.Write(", Name=");
+                Console.WriteLine(n.PivotOffset);
+
+
             }
         }
     }

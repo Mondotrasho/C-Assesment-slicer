@@ -10,6 +10,7 @@ using System.Windows.Forms;
 
 namespace WindowsFormsApplication2
 {
+    using System.Diagnostics;
     using System.IO;
 
     using WindowsFormstutorial;
@@ -196,6 +197,66 @@ namespace WindowsFormsApplication2
             OffXbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.X.ToString();
             OffYbox.Text = Slicing.Cuttings[ActiveIndex].PivotOffset.Y.ToString();
             this.Invalidate();
+        }
+
+        private void JsonTest_Click(object sender, EventArgs e)
+        {
+            this.Slicing.JsonSerialize();
+        }
+
+        private void pictureBox1_DragEnter(object sender, DragEventArgs e)
+        {
+           
+        }
+
+        private void pictureBox1_DragDrop(object sender, DragEventArgs e)
+        {
+            
+        }
+
+        private string getExtension(string file)
+        {
+            return Path.GetExtension(file);
+
+        }
+
+        private void Form1_DragDrop(object sender, DragEventArgs e)
+        {
+            //Take dropped items and store in array
+            string[] droppedFiles = (string[])e.Data.GetData(DataFormats.FileDrop);
+
+            //loop through all dropped iteams and display them
+            foreach (var file in droppedFiles)
+            {
+                string fileType = getExtension(file);
+                if (fileType == ".bmp")
+                {
+                    this.image = new Bitmap(file);
+                    this.Invalidate();
+                }
+                if (fileType == ".csv")
+                {
+                    // open stream
+                    Stream stream;
+                    //using file dialog cause idk another way to do it plus it makes it compatible with the existing Read function for slices
+                    OpenFileDialog openFileDialog = new OpenFileDialog();
+                    //set to file
+                    openFileDialog.FileName = file;
+                    stream = openFileDialog.OpenFile();
+                    var reader = new StreamReader(stream);
+                    Slicing.Read(reader);
+                    reader.Close();
+                    this.Invalidate();
+                }
+            }
+        }
+
+        private void Form1_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop, false) == true)
+            {
+                e.Effect = DragDropEffects.All;
+            }
         }
     }
 }

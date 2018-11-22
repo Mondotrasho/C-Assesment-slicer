@@ -8,13 +8,16 @@ namespace WindowsFormsApplication2
 {
     using System.Drawing;
     using System.IO;
+    using System.Runtime.Serialization;
     using System.Windows.Forms;
-
+    [DataContract]
     public class Cutting
     {
         public struct Vector2
         {
+            [DataMember(Name = "X", IsRequired = true)]
             public int X;
+            [DataMember(Name = "Y", IsRequired = true)]
             public int Y;
             public Vector2(int x, int y)
             {
@@ -27,14 +30,17 @@ namespace WindowsFormsApplication2
             }
 
         }
+        [DataMember(Name = "Number", IsRequired = true)]
         public int Number = 0;
+        [DataMember(Name = "Name", IsRequired = true)]
         public string Name = String.Empty;
+        [DataMember(Name = "Pos", IsRequired = true)]
         public Vector2 Pos = new Vector2(0, 0);
+        [DataMember(Name = "Size", IsRequired = true)]
         public Vector2 Size = new Vector2(10, 10);
+        [DataMember(Name = "PivotOffset", IsRequired = true)]
         public Vector2 PivotOffset = new Vector2(0, 0);
-
-
-
+        
         public void Write(StreamWriter writer)
         {
             writer.Write(Number + ",");
