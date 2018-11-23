@@ -61,6 +61,7 @@ namespace WindowsFormsApplication2
 
         private void SpriteNumberTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(SpriteNumberTextBox.Text)) return;
             ActiveIndex = Convert.ToInt32(SpriteNumberTextBox.Text);
             Slicing.checkAndAdd(ActiveIndex);
             Slicing.Cuttings[ActiveIndex].Number = ActiveIndex;
@@ -78,41 +79,48 @@ namespace WindowsFormsApplication2
 
         private void SpriteNameTextBox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(SpriteNameTextBox.Text)) return;
             Slicing.Cuttings[ActiveIndex].Name = SpriteNameTextBox.Text;
         }
 
         private void PosXbox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(PosXbox.Text)) return;
             Slicing.Cuttings[ActiveIndex].Pos.X = Convert.ToInt32(PosXbox.Text);
             this.Invalidate();
         }
 
         private void PosYbox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(PosYbox.Text)) return;
             Slicing.Cuttings[ActiveIndex].Pos.Y = Convert.ToInt32(PosYbox.Text);
             this.Invalidate();
         }
 
         private void SizeXbox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(SizeXbox.Text)) return;
             Slicing.Cuttings[ActiveIndex].Size.X = Convert.ToInt32(SizeXbox.Text);
             this.Invalidate();
         }
 
         private void SizeYbox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(SizeYbox.Text)) return;
             Slicing.Cuttings[ActiveIndex].Size.Y = Convert.ToInt32(SizeYbox.Text);
             this.Invalidate();
         }
 
         private void OffXbox_TextChanged(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(OffXbox.Text)) return;
             Slicing.Cuttings[ActiveIndex].PivotOffset.X = Convert.ToInt32(OffXbox.Text);
             this.Invalidate();
         }
 
         private void OffYbox_TextChanged(object sender, EventArgs e)
         {
+            if(string.IsNullOrWhiteSpace(OffYbox.Text)) return;
             Slicing.Cuttings[ActiveIndex].PivotOffset.Y = Convert.ToInt32(OffYbox.Text);
             this.Invalidate();
         }
@@ -240,6 +248,7 @@ namespace WindowsFormsApplication2
                     resetTextFields();
                     this.Invalidate();
                 }
+
             }
         }
 

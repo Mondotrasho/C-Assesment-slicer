@@ -33,7 +33,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.JsonTest = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.SpriteNameTextBox = new System.Windows.Forms.TextBox();
             this.Title1 = new System.Windows.Forms.TextBox();
@@ -88,6 +87,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.Enabled = false;
             this.textBox2.Location = new System.Drawing.Point(3, 3);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
@@ -100,7 +100,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.panel1.Controls.Add(this.JsonTest);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.SpriteNameTextBox);
             this.panel1.Controls.Add(this.Title1);
@@ -132,19 +131,11 @@
             this.panel1.Size = new System.Drawing.Size(245, 541);
             this.panel1.TabIndex = 27;
             // 
-            // JsonTest
-            // 
-            this.JsonTest.Location = new System.Drawing.Point(182, 151);
-            this.JsonTest.Name = "JsonTest";
-            this.JsonTest.Size = new System.Drawing.Size(63, 46);
-            this.JsonTest.TabIndex = 28;
-            this.JsonTest.Text = "Json";
-            this.JsonTest.UseVisualStyleBackColor = true;
-            this.JsonTest.Click += new System.EventHandler(this.JsonTest_Click);
-            // 
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Enabled = false;
+            this.textBox1.HideSelection = false;
             this.textBox1.Location = new System.Drawing.Point(10, 220);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -163,6 +154,8 @@
             // Title1
             // 
             this.Title1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.Title1.Enabled = false;
+            this.Title1.HideSelection = false;
             this.Title1.Location = new System.Drawing.Point(10, 45);
             this.Title1.Name = "Title1";
             this.Title1.ReadOnly = true;
@@ -192,6 +185,8 @@
             // textBox20
             // 
             this.textBox20.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox20.Enabled = false;
+            this.textBox20.HideSelection = false;
             this.textBox20.Location = new System.Drawing.Point(30, 425);
             this.textBox20.Name = "textBox20";
             this.textBox20.ReadOnly = true;
@@ -237,6 +232,8 @@
             // textBox3
             // 
             this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox3.Enabled = false;
+            this.textBox3.HideSelection = false;
             this.textBox3.Location = new System.Drawing.Point(9, 138);
             this.textBox3.Name = "textBox3";
             this.textBox3.ReadOnly = true;
@@ -247,6 +244,8 @@
             // textBox18
             // 
             this.textBox18.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox18.Enabled = false;
+            this.textBox18.HideSelection = false;
             this.textBox18.Location = new System.Drawing.Point(10, 369);
             this.textBox18.Name = "textBox18";
             this.textBox18.ReadOnly = true;
@@ -257,6 +256,8 @@
             // textBox4
             // 
             this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox4.Enabled = false;
+            this.textBox4.HideSelection = false;
             this.textBox4.Location = new System.Drawing.Point(9, 177);
             this.textBox4.Name = "textBox4";
             this.textBox4.ReadOnly = true;
@@ -285,6 +286,8 @@
             // textBox17
             // 
             this.textBox17.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox17.Enabled = false;
+            this.textBox17.HideSelection = false;
             this.textBox17.Location = new System.Drawing.Point(30, 399);
             this.textBox17.Name = "textBox17";
             this.textBox17.ReadOnly = true;
@@ -295,6 +298,8 @@
             // textBox6
             // 
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox6.Enabled = false;
+            this.textBox6.HideSelection = false;
             this.textBox6.Location = new System.Drawing.Point(10, 258);
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
@@ -314,6 +319,8 @@
             // textBox7
             // 
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox7.Enabled = false;
+            this.textBox7.HideSelection = false;
             this.textBox7.Location = new System.Drawing.Point(97, 280);
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
@@ -324,6 +331,8 @@
             // textBox15
             // 
             this.textBox15.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox15.Enabled = false;
+            this.textBox15.HideSelection = false;
             this.textBox15.Location = new System.Drawing.Point(97, 332);
             this.textBox15.Name = "textBox15";
             this.textBox15.ReadOnly = true;
@@ -334,6 +343,8 @@
             // textBox8
             // 
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox8.Enabled = false;
+            this.textBox8.HideSelection = false;
             this.textBox8.Location = new System.Drawing.Point(30, 306);
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
@@ -362,6 +373,8 @@
             // textBox13
             // 
             this.textBox13.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox13.Enabled = false;
+            this.textBox13.HideSelection = false;
             this.textBox13.Location = new System.Drawing.Point(30, 332);
             this.textBox13.Name = "textBox13";
             this.textBox13.ReadOnly = true;
@@ -372,6 +385,8 @@
             // textBox11
             // 
             this.textBox11.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox11.Enabled = false;
+            this.textBox11.HideSelection = false;
             this.textBox11.Location = new System.Drawing.Point(30, 280);
             this.textBox11.Name = "textBox11";
             this.textBox11.ReadOnly = true;
@@ -442,7 +457,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox SpriteNameTextBox;
-        private System.Windows.Forms.Button JsonTest;
     }
 }
 
